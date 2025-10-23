@@ -1,0 +1,24 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" th:with="active='payments'" th:replace="layout :: layout">
+<body>
+  <h2>Tạo hoá đơn</h2>
+  <form th:action="@{/payments}" method="post" th:object="${payment}">
+    <div class="form-grid">
+      <div><label>Bệnh nhân</label>
+        <select th:field="*{patient}">
+          <option th:each="p : ${patients}" th:value="${p}" th:text="${p.name}"></option>
+        </select>
+      </div>
+      <div><label>Ngày</label><input type="date" th:field="*{date}"></div>
+      <div><label>Số tiền</label><input type="number" step="1000" th:field="*{amount}"></div>
+      <div><label>Mô tả</label><input th:field="*{description}"></div>
+      <div><label>Trạng thái</label>
+        <select th:field="*{status}"><option>Đã thanh toán</option><option>Chưa thanh toán</option></select>
+      </div>
+      <div><label>Phương thức</label>
+        <select th:field="*{method}"><option>Tiền mặt</option><option>Chuyển khoản</option><option>Thẻ</option></select>
+      </div>
+    </div><br><button class="btn">Lưu</button>
+  </form>
+</body>
+</html>

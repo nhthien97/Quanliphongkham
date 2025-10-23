@@ -1,0 +1,30 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" th:with="active='patients'" th:replace="layout :: layout">
+<body>
+  <div class="toolbar">
+    <h2>Danh sách bệnh nhân</h2>
+    <a class="btn" th:href="@{/patients/new}">+ Thêm mới</a>
+  </div>
+
+  <table>
+    <thead><tr>
+      <th>Tên</th><th>Tuổi</th><th>Giới tính</th><th>Tình trạng</th><th>Số hồ sơ</th><th></th>
+    </tr></thead>
+    <tbody>
+      <tr th:each="p : ${patients}">
+        <td><a th:href="@{|/patients/${p.id}|}" th:text="${p.name}"></a></td>
+        <td th:text="${p.age}"></td>
+        <td th:text="${p.gender}"></td>
+        <td><span class="badge" th:text="${p.status}"></span></td>
+        <td th:text="${p.recordNo}"></td>
+        <td>
+          <a class="btn secondary" th:href="@{|/patients/${p.id}/edit|}">Sửa</a>
+          <form th:action="@{|/patients/${p.id}/delete|}" method="post" style="display:inline">
+            <button class="btn" type="submit">Xoá</button>
+          </form>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

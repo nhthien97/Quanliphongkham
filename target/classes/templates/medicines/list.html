@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi" th:replace="~{layout :: section}">
+<section>
+  <h2 th:text="${title}"></h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Thông tin</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="it, iStat: ${items}">
+        <td th:text="${iStat.count}"></td>
+        <td th:text="${it}"></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+</html>

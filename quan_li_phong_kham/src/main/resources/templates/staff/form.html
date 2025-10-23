@@ -1,0 +1,17 @@
+<!doctype html>
+<html xmlns:th="http://www.thyme.org" th:with="active='staff'" th:replace="layout :: layout">
+<body>
+  <h2>Thông tin nhân sự</h2>
+  <form th:action="@{/staff}" method="post" th:object="${staff}">
+    <div class="form-grid">
+      <div><label>Họ tên</label><input th:field="*{fullName}" required></div>
+      <div><label>Vai trò</label><input th:field="*{role}" required></div>
+      <div><label>Chuyên khoa</label><input th:field="*{specialty}"></div>
+      <div><label>Ca làm việc</label><input th:field="*{shift}"></div>
+      <div><label>Điện thoại</label><input th:field="*{phone}"></div>
+      <div><label>Email</label><input type="email" th:field="*{email}"></div>
+    </div>
+    <br><button class="btn" type="submit">Lưu</button>
+  </form>
+</body>
+</html>

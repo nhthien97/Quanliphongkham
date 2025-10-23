@@ -1,0 +1,23 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org" th:with="active='payments'" th:replace="layout :: layout">
+<body>
+  <div class="toolbar">
+    <h2>Quản lý thanh toán</h2>
+    <a class="btn" th:href="@{/payments/new}">+ Tạo hoá đơn</a>
+  </div>
+  <table>
+    <thead><tr><th>Ngày</th><th>Bệnh nhân</th><th>Số tiền</th><th>Mô tả</th><th>Trạng thái</th><th>Phương thức</th><th></th></tr></thead>
+    <tbody>
+      <tr th:each="p : ${payments}">
+        <td th:text="${p.date}"></td>
+        <td th:text="${p.patient.name}"></td>
+        <td th:text="${#numbers.formatDecimal(p.amount, 0, 'COMMA', 0, 'POINT')} + ' đ'"></td>
+        <td th:text="${p.description}"></td>
+        <td th:text="${p.status}"></td>
+        <td th:text="${p.method}"></td>
+        <td><form th:action="@{|/payments/${p.id}/delete|}" method="post"><button class="btn">Xoá</button></form></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>
